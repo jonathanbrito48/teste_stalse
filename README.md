@@ -1,20 +1,22 @@
-# Teste Stalse
+# stalse_teste — Documentação
 
 Resumo
 Projeto de exemplo que expõe uma API Flask para tickets, integra dados CSV ao SQLite, recalcula métricas via ETL e integra com um workflow n8n.
 
 Índice
 - Requisitos
-- Execução (rápida)
+- Execução
 - Rotas da API
-- Workflow n8n
+- Workflow n8n (import & teste)
+- Visualização do workflow (screenshot)
 - ETL (data/etl.py)
 - Trigger (trigger.sh)
 - Comandos úteis
 - Arquivos-chave
-- Notas rápidas
+- Observações rápidas
 
 ## Requisitos
+- Linux
 - Python 3.11 (ou compatível)
 - Docker & docker-compose (opcional, recomendado)
 
@@ -39,115 +41,107 @@ python3 backend/main.py
 ```bash
 docker-compose up --build
 ```
-O compose levanta os serviços:
+Serviços principais:
 - api (Flask)
 - n8n (n8n)
 - trigger (executa trigger.sh)
 
 ## Rotas da API (arquivo: backend/main.py)
 
-GET /tickets
-- Função: list_tickets
-- Retorna todos os registros da tabela `tickets` como JSON.
-- Exemplo:
-```bash
-curl http://localhost:5000/tickets
-```
+- GET /tickets
+  - Função: list_tickets
+  - Retorna todos os registros da tabela `tickets` (JSON).
 
-GET /metrics
-- Função: get_metrics
-- Retorna o JSON gerado pelo ETL: `data/processed/metrics.json`.
-- Exemplo:
-```bash
-curl http://localhost:5000/metrics
-```
+- GET /metrics
+  - Função: get_metrics
+  - Retorna `data/processed/metrics.json` (gerado pelo ETL).
 
-PATCH /tickets/<int:ticket>
-- Função: update_status_ticket
-- Body esperado: `{ "status": "Open" }`
-- Validações: somente `Open`, `In Progress`, `Closed`, `Resolved`.
-- Atualiza status no DB.
-- Efeito colateral: se o novo status for `closed` (atenção: no código atual a checagem compara string minúscula `'closed'`), a API faz POST para o webhook n8n em `http://n8n:5678/webhook/updated_status`.
-- Exemplo:
-```bash
-curl -X PATCH -H "Content-Type: application/json" -d '{"status":"Closed"}' http://localhost:5000/tickets/123
-```
+- PATCH /tickets/<int:ticket>
+  - Função: update_status_ticket
+  - Body esperado: `{ "status": "Open" }`
+  - Validações: `Open`, `In Progress`, `Closed`, `Resolved`.
+  - Atualiza `status` no DB.
+  - Se o status passar para "Closed", a API deve POSTar para o webhook n8n (ver nota sobre case abaixo).
 
-PATCH /update_datetime_ticket/<int:ticket>
-- Função: update_time_ticket
-- Body esperado: `{ "close_time": "true" }`
-- Se `close_time == "true"`, define `close_time` do ticket como `data atual` e atualiza o DB.
-- Exemplo:
-```bash
-curl -X PATCH -H "Content-Type: application/json" -d '{"close_time":"true"}' http://localhost:5000/update_datetime_ticket/123
-```
+- PATCH /update_datetime_ticket/<int:ticket>
+  - Função: update_time_ticket
+  - Body: `{ "close_time": "true" }`
+  - Se `close_time == "true"`, define `close_time` do ticket como `now - 3 horas` e atualiza o DB.
 
-POST /new_tickets
-- Função: create_ticket
-- Recebe lista de tickets JSON (ver `backend/seeds/new_tickets.json`).
-- Converte datas com `datetime.fromisoformat` e insere no DB.
-- Exemplo:
-```bash
-curl -X POST -H "Content-Type: application/json" --data-binary '@backend/seeds/new_tickets.json' http://localhost:5000/new_tickets
-```
+- POST /new_tickets
+  - Função: create_ticket
+  - Recebe lista de tickets (JSON). Convete datas com `datetime.fromisoformat` e insere no DB.
 
-GET /integration
-- Função: integration
-- Executa o script `backend/integration_db.py` que importa `data/raw/Technical Support Dataset.csv` para o DB.
-- Exemplo:
-```bash
-curl http://localhost:5000/integration
-```
+- GET /integration
+  - Função: integration
+  - Executa `backend/integration_db.py` para importar `data/raw/Technical Support Dataset.csv` para o DB.
 
-GET /recalculate_metrics
-- Função: recalculate_metrics
-- Executa `python3 data/etl.py` para regenerar `data/processed/metrics.json`.
-- Exemplo:
-```bash
-curl http://localhost:5000/recalculate_metrics
-```
+- GET /recalculate_metrics
+  - Função: recalculate_metrics
+  - Executa `python3 data/etl.py` para regenerar `data/processed/metrics.json`.
 
-## Workflow n8n (arquivo: n8n/workflow.json)
-- Contém:
-  - Webhook (path `updated_status`) que recebe POSTs.
-  - HTTP Request que faz PATCH para:
-    - URL: `http://api:5000/update_datetime_ticket/{{ $json.body.ticket }}`
-    - Body: `{ "close_time": "true" }`
-- Fluxo resumido:
-  1. A API, ao definir um ticket como `closed`, faz POST para `http://n8n:5678/webhook/updated_status`.
-  2. n8n recebe o webhook e envia um PATCH para a API para ajustar `close_time` do ticket automaticamente.
+## Workflow n8n — import, ativação e teste
+
+1. Onde está o workflow
+- Arquivo: `n8n/workflow.json`
+- Webhook path configurado: `updated_status`
+- Fluxo: Webhook (POST) → HTTP Request (PATCH para API /update_datetime_ticket/{{ $json.body.ticket }} com body `{ "close_time": "true" }`)
+
+2. Como importar no n8n (UI)
+- Abrir n8n (por ex. http://localhost:5678 ou via container).
+- No painel lateral, ir em "Workflows" → botão "Import".
+- Selecionar o arquivo `n8n/workflow.json` ou colar o JSON.
+- Salvar e Ativar o workflow (toggle "Active" no topo).
+
+3. Ajustes de URL / rede
+- Se rodando via docker-compose, a API dentro do mesmo compose usa `http://api:5000` e n8n usa `http://n8n:5678` — o workflow já chama `http://api:5000/update_datetime_ticket/...`.
+- Se rodando localmente (sem Docker), altere a URL do HTTP Request no workflow para `http://host.docker.internal:5000` ou `http://localhost:5000` conforme sua rede.
+
+4. Teste manual (end-to-end)
+- Ative o workflow no n8n.
+- No terminal, faça um PATCH que mude o status para Closed (este PATCH deve fazer a API enviar POST ao webhook n8n):
+```bash
+curl -X PATCH -H "Content-Type: application/json" \
+  -d '{"status":"Closed"}' \
+  http://localhost:5000/tickets/123
+```
+- Verifique no n8n:
+  - Webhook recebeu a requisição (History / Executions).
+  - HTTP Request foi executado e retornou 200 para a API `/update_datetime_ticket/<ticket>`.
+
+5. Troubleshooting rápido
+- Se o webhook não receber nada:
+  - Verifique logs da API e confirme a URL usada para POST (no container deve ser `http://n8n:5678/webhook/updated_status`).
+  - Confirme que o workflow está ativo e o path é `updated_status`.
+- Se o HTTP Request falhar:
+  - Verifique a URL da API usada no node, e as opções de envio de body (bodyParameters).
+  - Cheque permissões / CORS se estiver chamando cross-host.
+
+## Visualização do workflow (screenshot)
+Imagem do workflow (renderiza no GitHub e no VS Code Preview):
+![Workflow n8n - stalse_teste](n8n/screenshot.png)
+
+Se preferir controlar tamanho:
+<img src="n8n/screenshot.png" alt="Workflow n8n - stalse_teste" width="900"/>
 
 ## ETL (arquivo: data/etl.py)
 - Entrada: `data/raw/Technical Support Dataset.csv`
-- Principais passos:
-  1. Normaliza nomes de coluna (remove espaços e passa para lowercase).
-  2. Converte colunas de data (índices [7,8,9,12,14] no CSV) para datetime.
-  3. Calcula métricas:
-     - Contagens por categorias.
-     - Média de SLA: diferença em dias entre `close_time` e `created_time`.
-     - Tickets por mês (`ano_mes_ticket`) agrupados por categorias.
-  4. Salva o resultado em `data/processed/metrics.json`.
+- Principais etapas:
+  1. Normaliza nomes de coluna (remove espaços e lower).
+  2. Converte colunas de data (índices [7,8,9,12,14]).
+  3. Calcula métricas: contagens, média de SLA (dias entre close_time e created_time), tickets por mês.
+  4. Salva em `data/processed/metrics.json`.
 - Executar manual:
 ```bash
 python3 data/etl.py
 ```
 
 ## Trigger (arquivo: trigger.sh)
-Script usado pelo serviço `trigger` no docker-compose para orquestrar uma sequência:
-1. Espera até a API estar disponível (verifica host `api` na porta 5000).
-2. GET /integration -> integra CSV ao DB.
-3. POST /new_tickets -> insere tickets de seed (`backend/seeds/new_tickets.json`).
-4. GET /recalculate_metrics -> executa o ETL e atualiza `data/processed/metrics.json`.
-
-Trechos importantes:
-```bash
-while ! nc -z api 5000; do sleep 2; done
-curl -X GET http://api:5000/integration
-curl -X POST --header 'Content-Type: application/json' \
-     --data-binary '@backend/seeds/new_tickets.json' \
-     http://api:5000/new_tickets
-curl -X GET http://api:5000/recalculate_metrics
-```
+Sequência automática usada no docker-compose:
+1. Espera API disponível (nc -z api 5000).
+2. GET /integration (integra CSV → DB).
+3. POST /new_tickets (insere seeds).
+4. GET /recalculate_metrics (executa ETL).
 
 ## Comandos úteis
 - Rodar integração manual:
@@ -164,18 +158,18 @@ curl -X POST -H "Content-Type: application/json" --data-binary '@backend/seeds/n
 ```
 
 ## Arquivos-chave
-- backend/main.py — API Flask e rotas.
-- backend/integration_db.py — integra CSV para SQLite.
-- backend/seeds/new_tickets.json — tickets de exemplo para POST /new_tickets.
+- backend/main.py — API Flask.
+- backend/integration_db.py — importa CSV para SQLite.
+- backend/seeds/new_tickets.json — exemplo de tickets.
 - data/etl.py — gera `data/processed/metrics.json`.
-- data/processed/metrics.json — output do ETL (consumido por /metrics).
-- n8n/workflow.json — workflow que recebe webhook e chama a API.
-- trigger.sh — orquestra import + seeds + recálculo.
+- data/processed/metrics.json — output do ETL.
+- n8n/workflow.json — workflow do n8n (Webhook → PATCH /update_datetime_ticket).
+- n8n/screenshot.png — screenshot do workflow.
+- trigger.sh — orquestração inicial.
 - docker-compose.yml & Dockerfile — containerização.
 
-## Notas rápidas
-- Banco: SQLite via SQLAlchemy; arquivo em `backend/db.sqlite`.
-- Atenção: no código atual há comparação de status com string minúscula `'closed'` e validação que usa `Closed` — pode causar comportamento inesperado ao acionar o webhook n8n.
-- Ajustes em formatos de data ou nomes de coluna devem ser feitos em `data/etl.py` e `backend/integration_db.py`.
+## Observações rápidas
+- Atenção à comparação do status: no código atual há validação que aceita `Closed` (capitalizado) mas o disparo do webhook compara com `'closed'` (minúsculo). Recomenda-se unificar a checagem (ex.: comparar .lower()) para garantir que o webhook seja disparado corretamente.
+- Em ambientes Docker, use os hostnames dos serviços definidos no compose (api, n8n). Em execução local, ajuste URLs para localhost/host.docker.internal.
 
 Fim.

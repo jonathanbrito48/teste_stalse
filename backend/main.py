@@ -35,18 +35,22 @@ def update_status_ticket(ticket):
     new_status = request.json.get('status')
     if not new_status:
         return jsonify({"error": "Invalid status"}), 400
-    elif new_status not in ['Open', 'In Progress', 'Closed', 'Resolved']:
+    elif new_status.lower() not in ['open', 'in progress', 'closed', 'resolved']:
         return jsonify({"error": "Status must be one of: Open, In Progress, Closed, Resolved"}), 400
 
     db = engine.connect()
-    stmt = update(tickets).where(tickets.ticket_id == ticket).values(status=new_status)
+    stmt = update(tickets).where(tickets.ticket_id == ticket).values(status=new_status.title())
     db.execute(stmt)
     db.commit()
 
-    if new_status == 'closed':
-        webhook_url = 'http://n8n:5678/webhook/updated_status'
-        payload = {'ticket':ticket,'status':f'{new_status}'}
-        r = requests.post(webhook_url, data=payload)
+    # Disparar webhook quando status for "closed" (case-insensitive)
+    if new_status.lower() == 'closed':
+        webhook_url = os.environ.get('N8N_WEBHOOK_URL', 'http://n8n:5678/webhook/updated_status')
+        payload = {'ticket': ticket, 'status': new_status}
+        try:
+            requests.post(webhook_url, json=payload, timeout=5)
+        except Exception:
+            pass
 
     return jsonify({"message": "Status updated successfully"}), 200
 
