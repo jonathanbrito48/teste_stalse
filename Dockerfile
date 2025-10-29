@@ -5,6 +5,7 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     netcat-openbsd \
     curl \
+    lsof \
     && rm -rf /var/lib/apt/lists/* 
 
 WORKDIR /app

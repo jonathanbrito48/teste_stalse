@@ -5,7 +5,7 @@ import os
 from contextlib import contextmanager
 
 
-engine = create_engine('sqlite:///backend/db.sqlite', echo=False)
+engine = create_engine('sqlite:///backend/db.sqlite', echo=False, connect_args={"check_same_thread": False, "timeout": 30})
 metadata = MetaData()
 Session = sessionmaker(bind=engine)
 session = Session()

@@ -56,5 +56,5 @@ for _ in range(20):
     ticket_data = generate_new_ticket_data(max_id)
     new_tickets.append(ticket_data)
 
-with open('/home/jonathan-brito/python-projects/teste_stalse/backend/seeds/new_tickets.json', 'w') as f:
+with open('/app/backend/seeds/new_tickets.json', 'w') as f:
     json.dump(new_tickets, f, default=str, indent=4)
