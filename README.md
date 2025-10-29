@@ -173,7 +173,6 @@ curl -X POST -H "Content-Type: application/json" --data-binary '@backend/seeds/n
 - docker-compose.yml & Dockerfile — containerização.
 
 ## Observações rápidas
-- Atenção à comparação do status: no código atual há validação que aceita `Closed` (capitalizado) mas o disparo do webhook compara com `'closed'` (minúsculo). Recomenda-se unificar a checagem (ex.: comparar .lower()) para garantir que o webhook seja disparado corretamente.
 - Em ambientes Docker, use os hostnames dos serviços definidos no compose (api, n8n). Em execução local, ajuste URLs para localhost/host.docker.internal.
 
 Fim.
