@@ -126,7 +126,7 @@ curl -X PATCH -H "Content-Type: application/json" \
   - Cheque permissões / CORS se estiver chamando cross-host.
 
 ## Visualização do workflow (screenshot)
-![Workflow n8n - stalse_teste](n8n/screenshot.png)
+<img src="n8n/screenshot.png" alt="Workflow n8n - stalse_teste" width="900"/>
 
 ## ETL (arquivo: data/etl.py)
 - Entrada: `data/raw/Technical Support Dataset.csv`
