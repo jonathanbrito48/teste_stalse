@@ -1,0 +1,42 @@
+services:
+
+  api:
+    build: .
+    command: python backend/main.py
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=development
+    volumes:
+      - .:/app
+    working_dir: /app
+    networks:
+      - n8n-network
+
+  n8n:
+    image: n8nio/n8n
+    ports:
+      - "5678:5678"
+    environment:
+      - GENERIC_TIMEZONE=America/Sao_Paulo
+    restart: unless-stopped
+    networks:
+      - n8n-network
+    volumes:
+      - n8n-data:/home/node/.n8n
+
+  trigger:
+    build: .
+    command: ./trigger.sh
+    volumes:
+      - .:/app
+    working_dir: /app
+    networks:
+      - n8n-network
+
+networks:
+  n8n-network:
+    driver: bridge
+
+volumes:
+  n8n-data:

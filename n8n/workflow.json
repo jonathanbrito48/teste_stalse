@@ -1,0 +1,69 @@
+{
+  "name": "stalse_teste",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "updated_status",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "84556590-4253-4898-ba28-dff12d21556e",
+      "name": "Webhook",
+      "webhookId": "f46337cd-a828-4001-9faa-e5d8bd12e6d8"
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "=http://api:5000/update_datetime_ticket/{{ $json.body.ticket }}",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "close_time",
+              "value": "true"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "98e954a1-1517-4fef-bf28-63c760fad071",
+      "name": "HTTP Request"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "9284c6ea-6d4b-4cbe-bf92-37976efa124f",
+  "meta": {
+    "instanceId": "a961de8bfa4a856cc0cb779dc8baac56b77fcdd629d4139708c1def65950f9d1"
+  },
+  "id": "qSxmf495xMemSpmJ",
+  "tags": []
+}

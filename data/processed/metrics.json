@@ -1,0 +1,665 @@
+[
+    {
+        "status_count": {
+            "Closed": 1173,
+            "Resolved": 739,
+            "In progress": 400,
+            "Open": 18
+        }
+    },
+    {
+        "priority_count": {
+            "Low": 1192,
+            "Medium": 722,
+            "High": 416
+        }
+    },
+    {
+        "topic_count": {
+            "Product setup": 630,
+            "Pricing and licensing": 457,
+            "Feature request": 417,
+            "Purchasing and invoicing": 264,
+            "Bug report": 225,
+            "Other": 203,
+            "Pricing and Licensing": 68,
+            "Training request": 66
+        }
+    },
+    {
+        "agent_group_count": {
+            "1st line support": 1770,
+            "2nd line support": 560
+        }
+    },
+    {
+        "product_group_count": {
+            "Ready to use Software": 1010,
+            "Custom software development": 644,
+            "Other": 345,
+            "Training and Consulting Services": 331
+        }
+    },
+    {
+        "support_level_count": {
+            "Tier 1": 1770,
+            "Tier 2": 560
+        }
+    },
+    {
+        "topic_sla_mean": {
+            "Bug report": {
+                "sla": 3.45
+            },
+            "Feature request": {
+                "sla": 3.42
+            },
+            "Other": {
+                "sla": 3.47
+            },
+            "Pricing and Licensing": {
+                "sla": 3.21
+            },
+            "Pricing and licensing": {
+                "sla": 3.62
+            },
+            "Product setup": {
+                "sla": 3.38
+            },
+            "Purchasing and invoicing": {
+                "sla": 3.65
+            },
+            "Training request": {
+                "sla": 3.43
+            }
+        }
+    },
+    {
+        "agent_group_sla_mean": {
+            "1st line support": {
+                "sla": 3.53
+            },
+            "2nd line support": {
+                "sla": 3.31
+            }
+        }
+    },
+    {
+        "agent_name_sla_mean": {
+            "Adolpho Messingham": {
+                "sla": 3.39
+            },
+            "Bernard Beckley": {
+                "sla": 3.52
+            },
+            "Connor Danielovitch": {
+                "sla": 3.56
+            },
+            "Heather Urry": {
+                "sla": 3.51
+            },
+            "Kristos Westoll": {
+                "sla": 3.49
+            },
+            "Michele Whyatt": {
+                "sla": 3.02
+            },
+            "Nicola Wane": {
+                "sla": 3.53
+            },
+            "Sheela Cutten": {
+                "sla": 3.55
+            }
+        }
+    },
+    {
+        "support_level_sla_mean": {
+            "Tier 1": {
+                "sla": 3.53
+            },
+            "Tier 2": {
+                "sla": 3.31
+            }
+        }
+    },
+    {
+        "product_group_sla_mean": {
+            "Custom software development": {
+                "sla": 3.48
+            },
+            "Other": {
+                "sla": 3.3
+            },
+            "Ready to use Software": {
+                "sla": 3.47
+            },
+            "Training and Consulting Services": {
+                "sla": 3.63
+            }
+        }
+    },
+    {
+        "size_tickets_topic": {
+            "2023-01": {
+                "Bug report": 20,
+                "Feature request": 34,
+                "Other": 21,
+                "Pricing and Licensing": 0,
+                "Pricing and licensing": 51,
+                "Product setup": 68,
+                "Purchasing and invoicing": 25,
+                "Training request": 5
+            },
+            "2023-02": {
+                "Bug report": 18,
+                "Feature request": 22,
+                "Other": 13,
+                "Pricing and Licensing": 11,
+                "Pricing and licensing": 37,
+                "Product setup": 40,
+                "Purchasing and invoicing": 15,
+                "Training request": 3
+            },
+            "2023-03": {
+                "Bug report": 19,
+                "Feature request": 50,
+                "Other": 18,
+                "Pricing and Licensing": 0,
+                "Pricing and licensing": 32,
+                "Product setup": 60,
+                "Purchasing and invoicing": 19,
+                "Training request": 5
+            },
+            "2023-04": {
+                "Bug report": 15,
+                "Feature request": 33,
+                "Other": 20,
+                "Pricing and Licensing": 7,
+                "Pricing and licensing": 25,
+                "Product setup": 43,
+                "Purchasing and invoicing": 21,
+                "Training request": 9
+            },
+            "2023-05": {
+                "Bug report": 19,
+                "Feature request": 42,
+                "Other": 19,
+                "Pricing and Licensing": 0,
+                "Pricing and licensing": 46,
+                "Product setup": 62,
+                "Purchasing and invoicing": 26,
+                "Training request": 5
+            },
+            "2023-06": {
+                "Bug report": 17,
+                "Feature request": 38,
+                "Other": 18,
+                "Pricing and Licensing": 16,
+                "Pricing and licensing": 34,
+                "Product setup": 46,
+                "Purchasing and invoicing": 28,
+                "Training request": 6
+            },
+            "2023-07": {
+                "Bug report": 18,
+                "Feature request": 32,
+                "Other": 22,
+                "Pricing and Licensing": 0,
+                "Pricing and licensing": 38,
+                "Product setup": 60,
+                "Purchasing and invoicing": 25,
+                "Training request": 7
+            },
+            "2023-08": {
+                "Bug report": 24,
+                "Feature request": 34,
+                "Other": 13,
+                "Pricing and Licensing": 13,
+                "Pricing and licensing": 31,
+                "Product setup": 44,
+                "Purchasing and invoicing": 27,
+                "Training request": 8
+            },
+            "2023-09": {
+                "Bug report": 13,
+                "Feature request": 29,
+                "Other": 15,
+                "Pricing and Licensing": 12,
+                "Pricing and licensing": 33,
+                "Product setup": 36,
+                "Purchasing and invoicing": 23,
+                "Training request": 3
+            },
+            "2023-10": {
+                "Bug report": 26,
+                "Feature request": 33,
+                "Other": 16,
+                "Pricing and Licensing": 0,
+                "Pricing and licensing": 44,
+                "Product setup": 58,
+                "Purchasing and invoicing": 16,
+                "Training request": 7
+            },
+            "2023-11": {
+                "Bug report": 21,
+                "Feature request": 39,
+                "Other": 15,
+                "Pricing and Licensing": 9,
+                "Pricing and licensing": 49,
+                "Product setup": 55,
+                "Purchasing and invoicing": 21,
+                "Training request": 4
+            },
+            "2023-12": {
+                "Bug report": 15,
+                "Feature request": 31,
+                "Other": 13,
+                "Pricing and Licensing": 0,
+                "Pricing and licensing": 37,
+                "Product setup": 58,
+                "Purchasing and invoicing": 18,
+                "Training request": 4
+            }
+        }
+    },
+    {
+        "size_tickets_agent_group": {
+            "2023-01": {
+                "1st line support": 182,
+                "2nd line support": 42
+            },
+            "2023-02": {
+                "1st line support": 121,
+                "2nd line support": 38
+            },
+            "2023-03": {
+                "1st line support": 159,
+                "2nd line support": 44
+            },
+            "2023-04": {
+                "1st line support": 127,
+                "2nd line support": 46
+            },
+            "2023-05": {
+                "1st line support": 169,
+                "2nd line support": 50
+            },
+            "2023-06": {
+                "1st line support": 141,
+                "2nd line support": 62
+            },
+            "2023-07": {
+                "1st line support": 157,
+                "2nd line support": 45
+            },
+            "2023-08": {
+                "1st line support": 147,
+                "2nd line support": 47
+            },
+            "2023-09": {
+                "1st line support": 118,
+                "2nd line support": 46
+            },
+            "2023-10": {
+                "1st line support": 148,
+                "2nd line support": 52
+            },
+            "2023-11": {
+                "1st line support": 170,
+                "2nd line support": 43
+            },
+            "2023-12": {
+                "1st line support": 131,
+                "2nd line support": 45
+            }
+        }
+    },
+    {
+        "size_tickets_agent_name": {
+            "2023-01": {
+                "Adolpho Messingham": 12,
+                "Bernard Beckley": 36,
+                "Connor Danielovitch": 27,
+                "Heather Urry": 16,
+                "Kristos Westoll": 40,
+                "Michele Whyatt": 14,
+                "Nicola Wane": 36,
+                "Sheela Cutten": 43
+            },
+            "2023-02": {
+                "Adolpho Messingham": 9,
+                "Bernard Beckley": 24,
+                "Connor Danielovitch": 18,
+                "Heather Urry": 15,
+                "Kristos Westoll": 29,
+                "Michele Whyatt": 14,
+                "Nicola Wane": 27,
+                "Sheela Cutten": 23
+            },
+            "2023-03": {
+                "Adolpho Messingham": 16,
+                "Bernard Beckley": 28,
+                "Connor Danielovitch": 31,
+                "Heather Urry": 15,
+                "Kristos Westoll": 25,
+                "Michele Whyatt": 13,
+                "Nicola Wane": 37,
+                "Sheela Cutten": 38
+            },
+            "2023-04": {
+                "Adolpho Messingham": 18,
+                "Bernard Beckley": 24,
+                "Connor Danielovitch": 28,
+                "Heather Urry": 18,
+                "Kristos Westoll": 26,
+                "Michele Whyatt": 10,
+                "Nicola Wane": 24,
+                "Sheela Cutten": 25
+            },
+            "2023-05": {
+                "Adolpho Messingham": 17,
+                "Bernard Beckley": 35,
+                "Connor Danielovitch": 34,
+                "Heather Urry": 17,
+                "Kristos Westoll": 29,
+                "Michele Whyatt": 16,
+                "Nicola Wane": 35,
+                "Sheela Cutten": 36
+            },
+            "2023-06": {
+                "Adolpho Messingham": 21,
+                "Bernard Beckley": 30,
+                "Connor Danielovitch": 36,
+                "Heather Urry": 25,
+                "Kristos Westoll": 23,
+                "Michele Whyatt": 16,
+                "Nicola Wane": 21,
+                "Sheela Cutten": 31
+            },
+            "2023-07": {
+                "Adolpho Messingham": 12,
+                "Bernard Beckley": 29,
+                "Connor Danielovitch": 30,
+                "Heather Urry": 14,
+                "Kristos Westoll": 29,
+                "Michele Whyatt": 19,
+                "Nicola Wane": 36,
+                "Sheela Cutten": 33
+            },
+            "2023-08": {
+                "Adolpho Messingham": 20,
+                "Bernard Beckley": 32,
+                "Connor Danielovitch": 29,
+                "Heather Urry": 9,
+                "Kristos Westoll": 27,
+                "Michele Whyatt": 18,
+                "Nicola Wane": 35,
+                "Sheela Cutten": 24
+            },
+            "2023-09": {
+                "Adolpho Messingham": 12,
+                "Bernard Beckley": 21,
+                "Connor Danielovitch": 29,
+                "Heather Urry": 15,
+                "Kristos Westoll": 27,
+                "Michele Whyatt": 19,
+                "Nicola Wane": 23,
+                "Sheela Cutten": 18
+            },
+            "2023-10": {
+                "Adolpho Messingham": 18,
+                "Bernard Beckley": 32,
+                "Connor Danielovitch": 28,
+                "Heather Urry": 14,
+                "Kristos Westoll": 27,
+                "Michele Whyatt": 20,
+                "Nicola Wane": 31,
+                "Sheela Cutten": 30
+            },
+            "2023-11": {
+                "Adolpho Messingham": 22,
+                "Bernard Beckley": 36,
+                "Connor Danielovitch": 31,
+                "Heather Urry": 9,
+                "Kristos Westoll": 27,
+                "Michele Whyatt": 12,
+                "Nicola Wane": 39,
+                "Sheela Cutten": 37
+            },
+            "2023-12": {
+                "Adolpho Messingham": 20,
+                "Bernard Beckley": 32,
+                "Connor Danielovitch": 26,
+                "Heather Urry": 10,
+                "Kristos Westoll": 24,
+                "Michele Whyatt": 15,
+                "Nicola Wane": 23,
+                "Sheela Cutten": 26
+            }
+        }
+    },
+    {
+        "size_tickets_country": {
+            "2023-01": {
+                "Austria": 11,
+                "Bulgaria": 12,
+                "Czech Republic": 14,
+                "France": 11,
+                "Germany": 40,
+                "Greece": 16,
+                "Italy": 28,
+                "Poland": 23,
+                "Republic of Ireland": 20,
+                "Slovenia": 11,
+                "Spain": 12,
+                "United Kingdom": 26
+            },
+            "2023-02": {
+                "Austria": 15,
+                "Bulgaria": 8,
+                "Czech Republic": 9,
+                "France": 8,
+                "Germany": 22,
+                "Greece": 11,
+                "Italy": 19,
+                "Poland": 19,
+                "Republic of Ireland": 11,
+                "Slovenia": 11,
+                "Spain": 8,
+                "United Kingdom": 18
+            },
+            "2023-03": {
+                "Austria": 15,
+                "Bulgaria": 15,
+                "Czech Republic": 9,
+                "France": 12,
+                "Germany": 18,
+                "Greece": 19,
+                "Italy": 33,
+                "Poland": 19,
+                "Republic of Ireland": 7,
+                "Slovenia": 18,
+                "Spain": 8,
+                "United Kingdom": 30
+            },
+            "2023-04": {
+                "Austria": 11,
+                "Bulgaria": 9,
+                "Czech Republic": 7,
+                "France": 10,
+                "Germany": 31,
+                "Greece": 7,
+                "Italy": 28,
+                "Poland": 19,
+                "Republic of Ireland": 9,
+                "Slovenia": 14,
+                "Spain": 9,
+                "United Kingdom": 19
+            },
+            "2023-05": {
+                "Austria": 19,
+                "Bulgaria": 15,
+                "Czech Republic": 14,
+                "France": 25,
+                "Germany": 25,
+                "Greece": 16,
+                "Italy": 23,
+                "Poland": 24,
+                "Republic of Ireland": 15,
+                "Slovenia": 12,
+                "Spain": 9,
+                "United Kingdom": 22
+            },
+            "2023-06": {
+                "Austria": 11,
+                "Bulgaria": 11,
+                "Czech Republic": 13,
+                "France": 15,
+                "Germany": 20,
+                "Greece": 12,
+                "Italy": 18,
+                "Poland": 33,
+                "Republic of Ireland": 18,
+                "Slovenia": 11,
+                "Spain": 14,
+                "United Kingdom": 27
+            },
+            "2023-07": {
+                "Austria": 8,
+                "Bulgaria": 9,
+                "Czech Republic": 9,
+                "France": 13,
+                "Germany": 34,
+                "Greece": 11,
+                "Italy": 29,
+                "Poland": 28,
+                "Republic of Ireland": 8,
+                "Slovenia": 15,
+                "Spain": 11,
+                "United Kingdom": 27
+            },
+            "2023-08": {
+                "Austria": 9,
+                "Bulgaria": 13,
+                "Czech Republic": 12,
+                "France": 15,
+                "Germany": 26,
+                "Greece": 13,
+                "Italy": 27,
+                "Poland": 23,
+                "Republic of Ireland": 15,
+                "Slovenia": 14,
+                "Spain": 11,
+                "United Kingdom": 16
+            },
+            "2023-09": {
+                "Austria": 9,
+                "Bulgaria": 13,
+                "Czech Republic": 10,
+                "France": 16,
+                "Germany": 19,
+                "Greece": 9,
+                "Italy": 14,
+                "Poland": 23,
+                "Republic of Ireland": 6,
+                "Slovenia": 9,
+                "Spain": 13,
+                "United Kingdom": 23
+            },
+            "2023-10": {
+                "Austria": 12,
+                "Bulgaria": 8,
+                "Czech Republic": 11,
+                "France": 9,
+                "Germany": 19,
+                "Greece": 11,
+                "Italy": 28,
+                "Poland": 26,
+                "Republic of Ireland": 13,
+                "Slovenia": 12,
+                "Spain": 19,
+                "United Kingdom": 32
+            },
+            "2023-11": {
+                "Austria": 12,
+                "Bulgaria": 11,
+                "Czech Republic": 15,
+                "France": 10,
+                "Germany": 27,
+                "Greece": 10,
+                "Italy": 34,
+                "Poland": 31,
+                "Republic of Ireland": 12,
+                "Slovenia": 16,
+                "Spain": 12,
+                "United Kingdom": 23
+            },
+            "2023-12": {
+                "Austria": 12,
+                "Bulgaria": 7,
+                "Czech Republic": 11,
+                "France": 14,
+                "Germany": 25,
+                "Greece": 9,
+                "Italy": 22,
+                "Poland": 19,
+                "Republic of Ireland": 14,
+                "Slovenia": 16,
+                "Spain": 7,
+                "United Kingdom": 20
+            }
+        }
+    },
+    {
+        "size_tickets_support_level": {
+            "2023-01": {
+                "Tier 1": 182,
+                "Tier 2": 42
+            },
+            "2023-02": {
+                "Tier 1": 121,
+                "Tier 2": 38
+            },
+            "2023-03": {
+                "Tier 1": 159,
+                "Tier 2": 44
+            },
+            "2023-04": {
+                "Tier 1": 127,
+                "Tier 2": 46
+            },
+            "2023-05": {
+                "Tier 1": 169,
+                "Tier 2": 50
+            },
+            "2023-06": {
+                "Tier 1": 141,
+                "Tier 2": 62
+            },
+            "2023-07": {
+                "Tier 1": 157,
+                "Tier 2": 45
+            },
+            "2023-08": {
+                "Tier 1": 147,
+                "Tier 2": 47
+            },
+            "2023-09": {
+                "Tier 1": 118,
+                "Tier 2": 46
+            },
+            "2023-10": {
+                "Tier 1": 148,
+                "Tier 2": 52
+            },
+            "2023-11": {
+                "Tier 1": 170,
+                "Tier 2": 43
+            },
+            "2023-12": {
+                "Tier 1": 131,
+                "Tier 2": 45
+            }
+        }
+    }
+]
