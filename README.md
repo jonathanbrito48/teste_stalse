@@ -139,6 +139,8 @@ curl -X PATCH -H "Content-Type: application/json" \
 ```bash
 python3 data/etl.py
 ```
+ - Fonte dos dados: o arquivo `data/raw/Technical Support Dataset.csv` foi obtido do Kaggle (Suvroo — "Technical Support Dataset").
+   URL: https://www.kaggle.com/datasets/suvroo/technical-support-dataset
 
 ## Trigger (arquivo: trigger.sh)
 Sequência automática usada no docker-compose:
@@ -171,6 +173,7 @@ curl -X POST -H "Content-Type: application/json" --data-binary '@backend/seeds/n
 - n8n/screenshot.png — screenshot do workflow.
 - trigger.sh — orquestração inicial.
 - docker-compose.yml & Dockerfile — containerização.
+ 
 
 ## Observações rápidas
 - Atenção à comparação do status: no código atual há validação que aceita `Closed` (capitalizado) mas o disparo do webhook compara com `'closed'` (minúsculo). Recomenda-se unificar a checagem (ex.: comparar .lower()) para garantir que o webhook seja disparado corretamente.
