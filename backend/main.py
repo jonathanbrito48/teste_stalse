@@ -9,7 +9,6 @@ import datetime as dt
 
 app = Flask(__name__)
 
-# substitua a criação atual do engine por algo baseado em caminho absoluto
 db_file = os.path.join(os.path.dirname(__file__), "db.sqlite")
 engine = create_engine(f"sqlite:///{os.path.abspath(db_file)}", echo=False)
 
